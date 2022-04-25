@@ -112,8 +112,8 @@
             echo "<td>".$result['name']."</td>";
             echo "<td>".$result['count_word']."</td>";
             echo "<td>".$result['unic']."</td>";
-            echo '<td><a href="/index.html?id='.$result["id"].'">Выполнить</a></td>';
-            // echo '<td><a href="/inception.php?id='.$result["id"].'">Заселить</a></td>';
+            echo '<td><a href="writeesse.html?id='.$result["id"].'">Выполнить</a></td>';
+            // echo '<td><a href="writeesse.html">Выполнить</a></td>';
             echo "</tr>";
             }
           }
