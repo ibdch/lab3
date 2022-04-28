@@ -8,7 +8,7 @@
     content="​IT Company, ​The backbone for internet business, Company Services, ​Large payments volume or unique business model?, ​What’s included, What We Do, Custom software solutions">
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
-  <title>Главная</title>
+  <title>Эссе</title>
   <link rel="stylesheet" href="nicepage.css" media="screen">
   <link rel="stylesheet" href="Главная.css" media="screen">
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
@@ -186,7 +186,7 @@
         body: JSON.stringify(data), // данные могут быть 'строкой' или {объектом}!
         headers: { "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" },
       }).then(res => res.json()).then((res) =>{console.log("seccess", res)} );
-      window.location.href="Главная.php"
+       window.location.href="Главная.php"
 
     }
 

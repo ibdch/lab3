@@ -12,7 +12,7 @@ session_start();
   <meta name="page_type" content="np-template-header-footer-from-plugin">
   <title>Эссе</title>
   <link rel="stylesheet" href="nicepage.css" media="screen">
-  <link rel="stylesheet" href="О-нас.css" media="screen">
+
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
   <meta name="generator" content="Nicepage 4.7.1, nicepage.com">
@@ -109,7 +109,7 @@ session_start();
     <table class="table">
       <thead>
         <tr>
-          <th>Добавил задание</th>
+          <th>Выполнил задание</th>
           <th>Тема</th>
           <th>Тошнота</th>
           <th>Количество слов</th>
@@ -144,7 +144,7 @@ session_start();
           echo "<td>" . $result['toshnota'] . "</td>";
           echo "<td>" . $result['wordcount'] . "</td>";
           // echo "<td>" . $result['eunic'] . "</td>";
-          echo '<td><a href="/inception.php?id=' . $result["eid"] . '">Проверить уникальность</a></td>';
+          echo '<td><a href="">Проверить уникальность</a></td>';
           echo '<td><a href="/download.php?id=' . $result["eid"] . '">Скачать</a></td>';
           echo "</tr>";
         }
