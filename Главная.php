@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -85,10 +88,11 @@
       </thead>
       <tbody>
         <?php
+        
         $servername = "localhost";
         $database = "esse";
         $username = "root";
-        $password = "";
+        $password = "root";
         // Создаем соединение
         $conn = mysqli_connect($servername, $username, $password, $database);
         // Проверяем соединение
@@ -112,9 +116,10 @@
             echo "<td>".$result['name']."</td>";
             echo "<td>".$result['count_word']."</td>";
             echo "<td>".$result['unic']."</td>";
-            echo '<td><a href="/esseread.php?id='.$result["id"].'">Выполнить</a></td>';
+            echo '<td><a href="/esseread.php?id='.$result["id"].'?userid='.$_SESSION["user_id"].'">Выполнить</a></td>';
             // echo '<td><a href="/inception.php?id='.$result["id"].'">Заселить</a></td>';
             echo "</tr>";
+            
             }
           }
         ?>

@@ -135,7 +135,7 @@
         </div>
       </div>
       <div class="u-expanded-width u-form u-form-1">
-        <form data-taskid="<?php echo $_GET["id"] ?>" id="form" action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom"
+        <form data-taskid="<?php echo $_GET["id"] ?>" data-userid="<?php echo $_GET["userid"] ?>" id="form" action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom"
           name="form" style="padding: 10px;">
 
 
@@ -186,9 +186,10 @@
     async function insert(text, nausiam,wordcount) {
       console.log(text)
       const taskid=document.getElementById('form').dataset.taskid
+      const userid=document.getElementById('form').dataset.userid
       
-      const url = 'http://lhost/insertesse.php';
-      const data = {text: text, nausiam: nausiam,taskid: taskid,wordcount:wordcount};
+      const url = 'http://localhost/insertesse.php';
+      const data = {text: text, nausiam: nausiam,userid: userid,taskid: taskid,wordcount: wordcount};
       console.log(data)
 
       fetch(url, {
@@ -196,7 +197,7 @@
         body: JSON.stringify(data), // данные могут быть 'строкой' или {объектом}!
         headers: { "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" },
       }).then(res => res.json()).then((res) =>{console.log("seccess", res)} );
-      window.location.href="главная.php"
+      // window.location.href="главная.php"
 
     }
 
