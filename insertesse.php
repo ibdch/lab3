@@ -12,7 +12,7 @@ if (isset($myPostData)) {
    $servername = "localhost";
    $database = "esse";
    $username = "root";
-   $password = "root";
+   $password = "";
    // Создаем соединение
    $conn = mysqli_connect($servername, $username, $password, $database);
    // Проверяем соединение

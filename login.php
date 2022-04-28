@@ -4,7 +4,7 @@
     $servername = "localhost";
         $database = "esse";
         $username = "root";
-        $password = "root";
+        $password = "";
         // Создаем соединение
         $conn = mysqli_connect($servername, $username, $password, $database);
         // Проверяем соединение
@@ -28,9 +28,11 @@
         } else {
             if ($password == $result['pass']) {
                 $_SESSION['user_id'] = $result['id'];
+                $_SESSION['status']=$result["status"];
+                $_SESSION['name']=$result["fio"];
                 echo '<p class="success">Поздравляем, вы прошли авторизацию!</p>';
                 echo $_SESSION['user_id'];
-                // header('Location:http://localhost/Главная.php');
+                header('Location:/Главная.php');
             } else {
                 echo '<p class="error"> Неверные пароль или имя пользователя!</p>';
             }

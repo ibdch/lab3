@@ -55,8 +55,27 @@ session_start();
             </a>
           </div>
           <div class="u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="главная.php" style="padding: 10px 20px;">Задания</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="esse.php" style="padding: 10px 20px;">Эссе</a>
+          <ul class="u-nav u-unstyled u-nav-1">
+          <li class="u-nav-item">
+            <?php
+              echo "<p>".$_SESSION['name']."</p>";
+            ?>
+          </li>
+          <li class="u-nav-item">
+            <?php
+              echo "<a href='login.php'>Выход<a>";
+            ?>
+          </li>
+      </ui>
+      </div>
+      <div class="u-nav-container">
+      <ul class="u-nav u-unstyled u-nav-1">
+            <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Главная.php" style="padding: 10px 20px;">Задания</a>
+</li><li class="u-nav-item"><?php 
+    if($_SESSION["status"]!=1) {
+      echo '<a class="u-button-style u-nav-link" id="esse" href="esse.php">Эссе</a>';
+      }
+    ?>
 
 </li></ul>
           </div>
@@ -65,7 +84,12 @@ session_start();
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Главная.php">Задания</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="esse.php">Эссе</a>
+</li><li class="u-nav-item">
+  <?php 
+    if($_SESSION["status"]!=1) {
+      echo '<a class="u-button-style u-nav-link" id="esse" href="esse.php">Эссе</a>';
+      }
+    ?>
 
 </li></ul>
               </div>
@@ -83,7 +107,7 @@ session_start();
           <th>Добавил задание</th>
           <th>Тема эссе</th>
           <th>Количество слов</th>
-          <th>Уникальность</th>
+          <th>Выполнить</th>
         </tr>
       </thead>
       <tbody>
@@ -92,7 +116,7 @@ session_start();
         $servername = "localhost";
         $database = "esse";
         $username = "root";
-        $password = "root";
+        $password = "";
         // Создаем соединение
         $conn = mysqli_connect($servername, $username, $password, $database);
         // Проверяем соединение
@@ -100,13 +124,14 @@ session_start();
             die("Connection failed: " . mysqli_connect_error());
         }
         $getfio="";
-        $sql = "SELECT * FROM task";
-        
+$id=$_SESSION["user_id"];
+        $sql = "SELECT id_user,name,count_word FROM task inner JOIN esse ON task.id=esse.id_task WHERE esse.id_stud!=$id";
+        // echo $sql;
         $request = $conn->query($sql);
         
         while($result = mysqli_fetch_assoc($request)) {
             $getfio= $result['id_user'];
-            $sql1="SELECT * FROM users WHERE id = $getfio";
+             $sql1="SELECT * FROM users WHERE id = $getfio";
             $requestfio=$conn->query($sql1);
            
             while( $resultfio=mysqli_fetch_assoc($requestfio)) {
@@ -115,9 +140,14 @@ session_start();
             echo "<td>".$resultfio['fio']."</td>";
             echo "<td>".$result['name']."</td>";
             echo "<td>".$result['count_word']."</td>";
-            echo "<td>".$result['unic']."</td>";
-            echo '<td><a href="/esseread.php?id='.$result["id"].'?userid='.$_SESSION["user_id"].'">Выполнить</a></td>';
-            // echo '<td><a href="/inception.php?id='.$result["id"].'">Заселить</a></td>';
+            
+            if($_SESSION["status"]==1){
+              echo '<td><a href="/esseread.php?id='.$result["id"].'&userid='.$_SESSION["user_id"].'&wordcount='.$result["count_word"].'">Выполнить</a></td>';
+
+
+            }
+           
+            
             echo "</tr>";
             
             }

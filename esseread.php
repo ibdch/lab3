@@ -135,7 +135,7 @@
         </div>
       </div>
       <div class="u-expanded-width u-form u-form-1">
-        <form data-taskid="<?php echo $_GET["id"] ?>" data-userid="<?php echo $_GET["userid"] ?>" id="form" action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom"
+        <form data-taskid="<?php echo $_GET["id"] ?>" data-userid="<?php echo $_GET["userid"] ?>" data-wordcount="<?php echo $_GET["wordcount"] ?>" id="form" action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom"
           name="form" style="padding: 10px;">
 
 
@@ -188,7 +188,7 @@
       const taskid=document.getElementById('form').dataset.taskid
       const userid=document.getElementById('form').dataset.userid
       
-      const url = 'http://localhost/insertesse.php';
+      const url = 'http://lhost/insertesse.php';
       const data = {text: text, nausiam: nausiam,userid: userid,taskid: taskid,wordcount: wordcount};
       console.log(data)
 
@@ -300,7 +300,8 @@
       alert(nausiam);
       document.getElementById("toshnota").innerHTML = "Тошнота текста-" + nausiam + "%"
       document.getElementById("toshnotaWord").innerHTML = "Частоповторяемое слово-" + targetword.word
-      if (countword>=10)
+      const wordcount=document.getElementById('form').dataset.wordcount
+      if (countword>wordcount)
       {
         alert('1')
         document.getElementById("countword").innerHTML ="Количество слов - "+ countword+", это больше необходимого"

@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION['id'] = 3;
 ?>
 <!DOCTYPE html>
 <html style="font-size: 16px;">
@@ -63,6 +62,20 @@ $_SESSION['id'] = 3;
         </div>
         <div class="u-nav-container">
           <ul class="u-nav u-unstyled u-nav-1">
+          <li class="u-nav-item">
+            <?php
+              echo "<p>".$_SESSION['name']."</p>";
+            ?>
+          </li>
+          <li class="u-nav-item">
+            <?php
+              echo "<a href='login.php'>Выход<a>";
+            ?>
+          </li>
+      </ui>
+      </div>
+        <div class="u-nav-container">
+          <ul class="u-nav u-unstyled u-nav-1">
             <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Главная.php" style="padding: 10px 20px;">Задания</a>
             </li>
             <li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="О-нас.html" style="padding: 10px 20px;">Эссе</a>
@@ -104,7 +117,7 @@ $_SESSION['id'] = 3;
         $servername = "localhost";
         $database = "esse";
         $username = "root";
-        $password = "root";
+        $password = "";
         // Создаем соединение
         $conn = mysqli_connect($servername, $username, $password, $database);
         // Проверяем соединение
@@ -125,7 +138,7 @@ $_SESSION['id'] = 3;
           echo "<td>" . $result['wordcount'] . "</td>";
           echo "<td>" . $result['unic'] . "</td>";
           echo '<td><a href="/inception.php?id=' . $result["id"] . '">Проверить уникальность</a></td>';
-          // echo '<td><a href="/inception.php?id='.$result["id"].'">Заселить</a></td>';
+          
           echo "</tr>";
         }
         ?>
