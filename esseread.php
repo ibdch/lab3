@@ -91,20 +91,14 @@
                   <span class="u-custom-font u-font-arial">Соответствие требованиям</span>
                 </h4>
                 <p style="line-height: 0.8;">
-                  <span class="u-custom-font u-font-arial">Не соответствует требованиям</span>
+                  <span class="u-custom-font u-font-arial"></span>
                 </p>
                 <p style="line-height: 0.8;">
                   <span  id="countword"class="u-custom-font u-font-arial">&nbsp;</span>
                 </p>
               </div>
-              <a href="главная.php#sec-9d66" data-page-id="37937226"
-                class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-black u-border-hover-palette-1-base u-btn u-button-style u-custom-font u-font-arial u-hover-none u-none u-text-black u-text-hover-grey-70 u-btn-3">подробнее&nbsp;<span
-                  class="u-icon u-text-palette-1-dark-2"><svg class="u-svg-content" viewBox="0 0 512 512" x="0px"
-                    y="0px" style="width: 1em; height: 1em;">
-                    <path
-                      d="M441.156,322.876l-48.666-47.386c-3.319-3.243-8.619-3.234-11.93,0.017l-81.894,80.299V8.533 c0-4.71-3.823-8.533-8.533-8.533h-68.267c-4.71,0-8.533,3.823-8.533,8.533v347.273l-81.894-80.299    c-3.311-3.243-8.602-3.251-11.921-0.017l-48.666,47.386c-1.655,1.604-2.586,3.806-2.586,6.11c0,2.304,0.939,4.506,2.586,6.11 l179.2,174.481c1.655,1.613,3.806,2.423,5.948,2.423c2.15,0,4.292-0.811,5.956-2.423l179.2-174.481 c1.647-1.604,2.577-3.806,2.577-6.11C443.733,326.682,442.803,324.48,441.156,322.876z">
-                    </path>
-                  </svg><img></span>
+              
+                 
               </a>
             </div>
           </div>
@@ -121,14 +115,8 @@
                   <span id="toshnotaWord" class="u-custom-font u-font-arial">- частоповторяемое слово -&nbsp;</span>
                 </p>
               </div>
-              <a href="Главная.php#sec-9d66" data-page-id="37937226"
-                class="u-active-none u-border-2 u-border-active-palette-2-dark-1 u-border-black u-border-hover-palette-1-base u-btn u-button-style u-custom-font u-font-arial u-hover-none u-none u-text-black u-text-hover-grey-70 u-btn-4">подробнее&nbsp;<span
-                  class="u-icon u-text-palette-1-dark-2"><svg class="u-svg-content" viewBox="0 0 512 512" x="0px"
-                    y="0px" style="width: 1em; height: 1em;">
-                    <path
-                      d="M441.156,322.876l-48.666-47.386c-3.319-3.243-8.619-3.234-11.93,0.017l-81.894,80.299V8.533 c0-4.71-3.823-8.533-8.533-8.533h-68.267c-4.71,0-8.533,3.823-8.533,8.533v347.273l-81.894-80.299    c-3.311-3.243-8.602-3.251-11.921-0.017l-48.666,47.386c-1.655,1.604-2.586,3.806-2.586,6.11c0,2.304,0.939,4.506,2.586,6.11 l179.2,174.481c1.655,1.613,3.806,2.423,5.948,2.423c2.15,0,4.292-0.811,5.956-2.423l179.2-174.481 c1.647-1.604,2.577-3.806,2.577-6.11C443.733,326.682,442.803,324.48,441.156,322.876z">
-                    </path>
-                  </svg><img></span>
+             
+           
               </a>
             </div>
           </div>
@@ -146,7 +134,7 @@
           </div>
 
           <div class="u-align-right u-form-group u-form-submit">
-            <a href="#"  id="chek" class="u-btn u-btn-submit u-button-style but1">Проверить текст<br>
+            <a href="#"  id="chek"style="display: block" class="u-btn u-btn-submit u-button-style but1">Проверить текст<br>
             </a>
             <input type="button" id="chek" class="u-form-control-hidden but1">
            
@@ -183,12 +171,13 @@
     chek.onclick=function(){
       analis() 
     }
+
     async function insert(text, nausiam,wordcount) {
       console.log(text)
       const taskid=document.getElementById('form').dataset.taskid
       const userid=document.getElementById('form').dataset.userid
       
-      const url = 'http://lhost/insertesse.php';
+      const url = 'http://localhost/insertesse.php';
       const data = {text: text, nausiam: nausiam,userid: userid,taskid: taskid,wordcount: wordcount};
       console.log(data)
 
@@ -197,7 +186,7 @@
         body: JSON.stringify(data), // данные могут быть 'строкой' или {объектом}!
         headers: { "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" },
       }).then(res => res.json()).then((res) =>{console.log("seccess", res)} );
-      // window.location.href="главная.php"
+      window.location.href="Главная.php"
 
     }
 
@@ -205,12 +194,12 @@
 
     
     function analisandsend() {
-      alert("Вы нажали на кнопку");
+     
       
       let textarea = document.getElementById("input")
       let text = textarea.value
       text = text.toLowerCase()
-    //  text = text.replace(/["."]/g, ". ")
+   
       text = text.replace(/\s{2,}/g, ' ')
       console.log(text)
 
@@ -247,14 +236,13 @@
       console.log(targetword)
       console.log(wordrepeats);
       let nausiam = (maxcount / countword) * 100
+      nausiam=Math.round(nausiam,2)
       console.log(nausiam)
-      alert(nausiam);
-      
       insert(text, nausiam,countword)
     }
     function analis() {
      
-      alert("Вы нажали на кнопку");
+      
 
       let textarea = document.getElementById("input")
       let text = textarea.value
@@ -296,14 +284,15 @@
       console.log(targetword)
       console.log(wordrepeats);
       let nausiam = (maxcount / countword) * 100
-      console.log(nausiam)
-      alert(nausiam);
+      nausiam=Math.round(nausiam,2)
       document.getElementById("toshnota").innerHTML = "Тошнота текста-" + nausiam + "%"
       document.getElementById("toshnotaWord").innerHTML = "Частоповторяемое слово-" + targetword.word
       const wordcount=document.getElementById('form').dataset.wordcount
+      document.getElementById("countword").innerHTML=""
       if (countword>wordcount)
       {
-        alert('1')
+        
+        
         document.getElementById("countword").innerHTML ="Количество слов - "+ countword+", это больше необходимого"
       }
       else{

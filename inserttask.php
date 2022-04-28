@@ -1,14 +1,13 @@
 <?php
+session_start();
 $myPostData = json_decode(file_get_contents('php://input'), true);
 // var_dump($myPostData);
 
 if (isset($myPostData)) {
-   $text = $myPostData['text'];
 
-   $naus = $myPostData['nausiam'];
-   $taskid=$myPostData['taskid'];
+   $taskname=$myPostData['taskname'];
    $wordcount =$myPostData['wordcount'];
-   $userid=$myPostData['userid'];
+   $userid=$_SESSION["user_id"];
    $servername = "localhost";
    $database = "esse";
    $username = "root";
@@ -18,7 +17,7 @@ if (isset($myPostData)) {
    // Проверяем соединение
 
 
-   $sql = "INSERT INTO esse (text,toshnota,id_task,wordcount,id_stud) values ('$text','$naus','$taskid','$wordcount','$userid')";
+   $sql = "INSERT INTO task (id_user,name,count_word) values ('$userid','$taskname','$wordcount')";
 
    if (mysqli_query($conn, $sql)) {
    } else {

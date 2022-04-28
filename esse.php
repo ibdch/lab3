@@ -63,9 +63,13 @@ session_start();
         <div class="u-nav-container">
           <ul class="u-nav u-unstyled u-nav-1">
           <li class="u-nav-item">
-            <?php
-              echo "<p>".$_SESSION['name']."</p>";
-            ?>
+          <?php
+              if ($_SESSION["status"] != 1){
+              echo "<p> Преподаватель " . $_SESSION['name'] . "</p>";
+              } else{
+              echo "<p> Студент " . $_SESSION['name'] . "</p>";
+              }
+              ?>
           </li>
           <li class="u-nav-item">
             <?php
@@ -106,10 +110,12 @@ session_start();
       <thead>
         <tr>
           <th>Добавил задание</th>
+          <th>Тема</th>
           <th>Тошнота</th>
           <th>Количество слов</th>
           <th>Уникальность</th>
-          <th>Уникальность</th>
+          
+          <th>Скачать</th>
         </tr>
       </thead>
       <tbody>
@@ -117,7 +123,7 @@ session_start();
         $servername = "localhost";
         $database = "esse";
         $username = "root";
-        $password = "";
+        $password = "root";
         // Создаем соединение
         $conn = mysqli_connect($servername, $username, $password, $database);
         // Проверяем соединение
@@ -125,7 +131,7 @@ session_start();
           die("Connection failed: " . mysqli_connect_error());
         }
         $getfio = "";
-        $sql = "SELECT * FROM esse inner join users on esse.id_stud=users.id ";
+        $sql = "SELECT fio,toshnota,wordcount,esse.id as eid,task.name as tname,esse.unic as eunic FROM esse inner join users on esse.id_stud=users.id inner join task on esse.id_task=task.id";
 
         $request = $conn->query($sql);
 
@@ -134,14 +140,16 @@ session_start();
 
           echo "<tr>";
           echo "<td>" . $result['fio'] . "</td>";
+          echo "<td>" . $result['tname'] . "</td>";
           echo "<td>" . $result['toshnota'] . "</td>";
           echo "<td>" . $result['wordcount'] . "</td>";
-          echo "<td>" . $result['unic'] . "</td>";
-          echo '<td><a href="/inception.php?id=' . $result["id"] . '">Проверить уникальность</a></td>';
-          
+          // echo "<td>" . $result['eunic'] . "</td>";
+          echo '<td><a href="/inception.php?id=' . $result["eid"] . '">Проверить уникальность</a></td>';
+          echo '<td><a href="/download.php?id=' . $result["eid"] . '">Скачать</a></td>';
           echo "</tr>";
         }
         ?>
+        
       </tbody>
     </table>
   </div>

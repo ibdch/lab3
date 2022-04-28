@@ -1,7 +1,13 @@
 <?php
 
 $url = "https://api.advego.com/json/antiplagiat/get/";
-$data = array("jsonrpc" => "2.0","method"=>"unique_check","params" => array ("token" => "bdf6add8-5993-4ffd-ad0e-ea1489a94d92" ,"key"=>"1","get_text" => "1","report_json" => "1"),"id"=>"1" );
+$data = array("jsonrpc" => "2.0",
+"method"=>"unique_check",
+"params" => array ("token" => "bdf6add8-5993-4ffd-ad0e-ea1489a94d92" ,
+    "key"=>"1",
+    "get_text" => "1",
+    "report_json" => "1"),
+"id"=>"1" );
 
 $postdata = json_encode($data);
 

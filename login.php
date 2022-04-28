@@ -4,7 +4,7 @@
     $servername = "localhost";
         $database = "esse";
         $username = "root";
-        $password = "";
+        $password = "root";
         // Создаем соединение
         $conn = mysqli_connect($servername, $username, $password, $database);
         // Проверяем соединение
@@ -30,8 +30,8 @@
                 $_SESSION['user_id'] = $result['id'];
                 $_SESSION['status']=$result["status"];
                 $_SESSION['name']=$result["fio"];
-                echo '<p class="success">Поздравляем, вы прошли авторизацию!</p>';
-                echo $_SESSION['user_id'];
+                // echo '<p class="success">Поздравляем, вы прошли авторизацию!</p>';
+                // echo $_SESSION['user_id'];
                 header('Location:/Главная.php');
             } else {
                 echo '<p class="error"> Неверные пароль или имя пользователя!</p>';
@@ -43,6 +43,7 @@
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
+  <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="​IT Company, ​The backbone for internet business, Company Services, ​Large payments volume or unique business model?, ​What’s included, What We Do, Custom software solutions">
@@ -61,14 +62,20 @@
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|Cambay:400,400i,700,700i">
     
 </head>
-<form method="post" action="" name="signin-form">
-  <div class="form-element">
-    <label>Username</label>
-    <input type="text" name="username" pattern="[a-zA-Z0-9]+" required />
-  </div>
-  <div class="form-element">
-    <label>Password</label>
-    <input type="password" name="password" required />
-  </div>
-  <button type="submit" name="login" value="login">Log In</button>
-</form>
+
+
+  <section class="container">
+    <div class="login">
+      <h4>Войти в личный кабинет</h4>
+      <form method="post" action="" name="signin-form">
+	  
+        <p><input type="text" name="username" placeholder="Логин или Email" pattern="[a-zA-Z0-9]+" required /></p>
+        <p><input type="password" name="password" placeholder="Пароль" required /></p>
+        </p>
+        <p class="submit"><input  type="submit" name="login" value="Войти"></p>
+      </form>
+    </div>
+
+  </section>
+
+
